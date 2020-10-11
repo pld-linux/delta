@@ -1,17 +1,17 @@
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.4.3
+Version:	0.4.4
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	440273fe901f11df0659853481926d12
+# Source0-md5:	e41ddf2cd36df5aa1697fc2c2e31cca2
 # cd delta-%{version}
 # cargo vendor
 # cd ..
 # tar cJf delta-crates-%{version}.tar.xz delta-%{version}/{vendor,Cargo.lock}
 Source1:	%{name}-crates-%{version}.tar.xz
-# Source1-md5:	8478eef12ebbc54ab6bf1ed61b5385f6
+# Source1-md5:	1638d0b8b9dd5bc2783cb1d84720e047
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 BuildRequires:	rust
