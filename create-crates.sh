@@ -1,6 +1,8 @@
 #!/bin/sh
 
-for cmd in bsdtar rpm-specdump cargo; do
+force_cargo_package="git-delta"
+
+for cmd in bsdtar rpm-specdump cargo perl; do
   if ! command -v $cmd > /dev/null 2> /dev/null; then
     not_installed="$not_installed$cmd "
   fi
@@ -23,6 +25,7 @@ spec_dump=$(rpm-specdump "$pkg_dir/$pkg_name.spec")
 pkg_version=$(echo "$spec_dump" | grep PACKAGE_VERSION | cut -f3 -d' ')
 pkg_src=$(basename $(echo "$spec_dump" | grep SOURCEURL0 | cut -f3- -d' '))
 crates_file="$pkg_name-crates-$pkg_version.tar.xz"
+cargo_package=${force_cargo_package:-$pkg_name}
 
 if [ -e "$pkg_dir/$crates_file" ]; then
   echo "ERROR: crates file $crates_file already exists" >&2
@@ -58,6 +61,9 @@ if [ $? -ne 0 ]; then
   echo "ERROR: cargo vendor failed" >&2
   exit 1
 fi
+
+# replace cargo package version with @@VERSION@@
+perl -pi -e 'BEGIN { undef $/;} s/(\[\[package\]\]\nname\s*=\s*"'"$cargo_package"'"\nversion\s*=\s*")[^"]+/$1\@\@VERSION\@\@/m' Cargo.lock
 
 cd ..
 tar cJf "$pkg_dir/$crates_file" "$src_dir"/{Cargo.lock,vendor}
