@@ -3,7 +3,7 @@
 Summary:	A viewer for git and diff output
 Name:		delta
 Version:	0.7.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
@@ -13,6 +13,7 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	88f9be8b3bf03d2651690a010cc27766
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
+BuildRequires:	rpmbuild(macros) >= 2.003
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -65,13 +66,13 @@ EOF
 %build
 export CARGO_HOME="$(pwd)/.cargo"
 
-cargo -v build --release --frozen
+%cargo_build --frozen
 
 %install
 rm -rf $RPM_BUILD_ROOT
 export CARGO_HOME="$(pwd)/.cargo"
 
-cargo -v install --frozen --root $RPM_BUILD_ROOT%{_prefix} --path $PWD
+%cargo_install --frozen --root $RPM_BUILD_ROOT%{_prefix} --path $PWD
 %{__rm} $RPM_BUILD_ROOT%{_prefix}/.crates*
 
 %clean
