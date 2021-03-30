@@ -13,10 +13,11 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	88f9be8b3bf03d2651690a010cc27766
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
-BuildRequires:	rpmbuild(macros) >= 2.003
+BuildRequires:	rpmbuild(macros) >= 2.004
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
