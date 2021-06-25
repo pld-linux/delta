@@ -1,16 +1,16 @@
-%define		crates_ver	0.8.0
+%define		crates_ver	0.8.1
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.8.0
+Version:	0.8.1
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	91dfb57b81caeb1d2a5b79879ba991ee
+# Source0-md5:	72c0d55c238827eed613ceb24bbbe58e
 # ./create-crates.sh
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	5383876724e630e92d3ef9dfa75901be
+# Source1-md5:	0e7b2ee7898b9532dd4ad9385ed5ef36
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 BuildRequires:	libgit2-devel >= 1.1.0
