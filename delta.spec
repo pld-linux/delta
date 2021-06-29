@@ -14,12 +14,14 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 BuildRequires:	libgit2-devel >= 1.1.0
+BuildRequires:	oniguruma-devel >= 6.9.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.004
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	libgit2 >= 1.1.0
+Requires:	oniguruma >= 6.9.3
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,6 +71,7 @@ EOF
 
 %build
 export CARGO_HOME="$(pwd)/.cargo"
+export RUSTONIG_SYSTEM_LIBONIG=true
 
 %cargo_build --frozen
 
