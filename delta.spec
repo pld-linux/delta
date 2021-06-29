@@ -2,12 +2,12 @@
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	72c0d55c238827eed613ceb24bbbe58e
+# Source0-md5:	388c2914941359251dcccf9590ec04c1
 # ./create-crates.sh
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	0e7b2ee7898b9532dd4ad9385ed5ef36
