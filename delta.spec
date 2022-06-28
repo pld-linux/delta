@@ -3,7 +3,7 @@
 Summary:	A viewer for git and diff output
 Name:		delta
 Version:	0.13.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
@@ -12,14 +12,14 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	e721fa2f04b67472c87362b34a01f8db
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
-BuildRequires:	libgit2-devel >= 1.1.0
+BuildRequires:	libgit2-devel >= 1.4.0
 BuildRequires:	oniguruma-devel >= 6.9.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.004
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	libgit2 >= 1.1.0
+Requires:	libgit2 >= 1.4.0
 Requires:	oniguruma >= 6.9.3
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
