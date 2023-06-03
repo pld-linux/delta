@@ -1,25 +1,26 @@
-%define		crates_ver	0.15.1
+%define		crates_ver	0.16.4
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.15.1
+Version:	0.16.4
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	6c219ab60d6a9dff5245c0f454f0b0aa
+# Source0-md5:	c54f2361424fffba901b7d81ad8f6f89
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	cdf1ecb5b5f0e28b584e3d534e0692c9
+# Source1-md5:	b5036c583cd088b7699dcd7a2b42c999
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
-BuildRequires:	libgit2-devel >= 1.4.0
+BuildRequires:	libgit2-devel >= 1.4.5
 BuildRequires:	oniguruma-devel >= 6.9.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.004
 BuildRequires:	rust
+BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	libgit2 >= 1.4.0
+Requires:	libgit2 >= 1.4.5
 Requires:	oniguruma >= 6.9.3
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
