@@ -78,6 +78,7 @@ export RUSTONIG_SYSTEM_LIBONIG=true
 rm -rf $RPM_BUILD_ROOT
 export CARGO_HOME="$(pwd)/.cargo"
 
+export RUSTONIG_SYSTEM_LIBONIG=true
 %cargo_install --frozen --root $RPM_BUILD_ROOT%{_prefix} --path $PWD
 %{__rm} $RPM_BUILD_ROOT%{_prefix}/.crates*
 
