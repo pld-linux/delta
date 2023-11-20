@@ -12,6 +12,7 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	b5036c583cd088b7699dcd7a2b42c999
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
+BuildRequires:	libgit2-devel < 1.6.0
 BuildRequires:	libgit2-devel >= 1.4.5
 BuildRequires:	oniguruma-devel >= 6.9.3
 BuildRequires:	pkgconfig
