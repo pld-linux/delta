@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	system_libgit2		# use system installed libgit2
+
 %define		crates_ver	0.16.4
 
 Summary:	A viewer for git and diff output
@@ -12,8 +16,10 @@ Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	b5036c583cd088b7699dcd7a2b42c999
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
+%if %{with system_libgit2}
 BuildRequires:	libgit2-devel < 1.6.0
 BuildRequires:	libgit2-devel >= 1.4.5
+%endif
 BuildRequires:	oniguruma-devel >= 6.9.3
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.004
@@ -21,7 +27,7 @@ BuildRequires:	rust
 BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	libgit2 >= 1.4.5
+%{?with_system_libgit2:Requires:	libgit2 >= 1.4.5}
 Requires:	oniguruma >= 6.9.3
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
