@@ -2,33 +2,33 @@
 # Conditional build:
 %bcond_without	system_libgit2		# use system installed libgit2
 
-%define		crates_ver	0.16.4
+%define		crates_ver	0.17.0
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.16.5
-Release:	2
+Version:	0.17.0
+Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	168e164fd93c96dc1caf12852464ab81
+# Source0-md5:	323ef94cc3d9c0b21691ecc5e250708f
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	b5036c583cd088b7699dcd7a2b42c999
+# Source1-md5:	c32b2651ccef34736929edaca477a269
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 %if %{with system_libgit2}
-BuildRequires:	libgit2-devel < 1.6.0
-BuildRequires:	libgit2-devel >= 1.4.5
+BuildRequires:	libgit2-devel < 1.8.0
+BuildRequires:	libgit2-devel >= 1.7.2
 %endif
-BuildRequires:	oniguruma-devel >= 6.9.3
+BuildRequires:	oniguruma-devel >= 6.9.8
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.004
 BuildRequires:	rust
 BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-%{?with_system_libgit2:Requires:	libgit2 >= 1.4.5}
-Requires:	oniguruma >= 6.9.3
+%{?with_system_libgit2:Requires:	libgit2 >= 1.7.2}
+Requires:	oniguruma >= 6.9.8
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
