@@ -6,12 +6,12 @@
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.18.0
+Version:	0.18.1
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	1fd39dc8d4a83b0c81981be65cc7c351
+# Source0-md5:	33ca5b2199f079733ece1a4e69d3d459
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	3c68fdd1bf288c771d66d437e037d886
 URL:		https://github.com/dandavison/delta
