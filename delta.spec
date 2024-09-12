@@ -2,18 +2,18 @@
 # Conditional build:
 %bcond_without	system_libgit2		# use system installed libgit2
 
-%define		crates_ver	0.18.0
+%define		crates_ver	0.18.2
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.18.1
+Version:	0.18.2
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	33ca5b2199f079733ece1a4e69d3d459
+# Source0-md5:	6a89082f16446903edfe025d430d96dc
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	3c68fdd1bf288c771d66d437e037d886
+# Source1-md5:	58e643100bd2874c0430c604daa23da4
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 %if %{with system_libgit2}
