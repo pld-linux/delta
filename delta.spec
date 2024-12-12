@@ -7,7 +7,7 @@
 Summary:	A viewer for git and diff output
 Name:		delta
 Version:	0.18.2
-Release:	1
+Release:	2
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
