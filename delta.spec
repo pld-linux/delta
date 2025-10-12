@@ -22,11 +22,12 @@ BuildRequires:	libgit2-devel >= 1.7.2
 %endif
 BuildRequires:	oniguruma-devel >= 6.9.8
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 2.004
+BuildRequires:	rpmbuild(macros) >= 2.050
 BuildRequires:	rust
 BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+%{?rust_req}
 %{?with_system_libgit2:Requires:	libgit2 >= 1.7.2}
 Requires:	oniguruma >= 6.9.8
 ExclusiveArch:	%{rust_arches}
