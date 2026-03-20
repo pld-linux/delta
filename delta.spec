@@ -2,23 +2,23 @@
 # Conditional build:
 %bcond_without	system_libgit2		# use system installed libgit2
 
-%define		crates_ver	0.18.2
+%define		crates_ver	0.19.0
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.18.2
-Release:	3
+Version:	0.19.0
+Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	6a89082f16446903edfe025d430d96dc
+# Source0-md5:	8da22f81967fbf6eb2907e433f7c0e44
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
-# Source1-md5:	58e643100bd2874c0430c604daa23da4
+# Source1-md5:	24871297667c3833082f1bc1d34e993b
 URL:		https://github.com/dandavison/delta
 BuildRequires:	cargo
 %if %{with system_libgit2}
-BuildRequires:	libgit2-devel < 1.8.0
-BuildRequires:	libgit2-devel >= 1.7.2
+BuildRequires:	libgit2-devel < 1.10.0
+BuildRequires:	libgit2-devel >= 1.9.0
 %endif
 BuildRequires:	oniguruma-devel >= 6.9.8
 BuildRequires:	pkgconfig
@@ -28,7 +28,7 @@ BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %{?rust_req}
-%{?with_system_libgit2:Requires:	libgit2 >= 1.7.2}
+%{?with_system_libgit2:Requires:	libgit2 >= 1.9.0}
 Requires:	oniguruma >= 6.9.8
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -89,7 +89,6 @@ export CARGO_HOME="$(pwd)/.cargo"
 
 export RUSTONIG_SYSTEM_LIBONIG=true
 %cargo_install --frozen --root $RPM_BUILD_ROOT%{_prefix} --path $PWD
-%{__rm} $RPM_BUILD_ROOT%{_prefix}/.crates*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
