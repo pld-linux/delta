@@ -6,12 +6,12 @@
 
 Summary:	A viewer for git and diff output
 Name:		delta
-Version:	0.19.0
+Version:	0.20.1
 Release:	1
 License:	MIT
 Group:		Applications
 Source0:	https://github.com/dandavison/delta/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8da22f81967fbf6eb2907e433f7c0e44
+# Source0-md5:	9d957dee711f45e532e099d0da044854
 Source1:	%{name}-crates-%{crates_ver}.tar.xz
 # Source1-md5:	24871297667c3833082f1bc1d34e993b
 URL:		https://github.com/dandavison/delta
@@ -24,11 +24,9 @@ BuildRequires:	oniguruma-devel >= 6.9.8
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.050
 BuildRequires:	rust
-BuildRequires:	rust-bindgen
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %{?rust_req}
-%{?with_system_libgit2:Requires:	libgit2 >= 1.9.0}
 Requires:	oniguruma >= 6.9.8
 ExclusiveArch:	%{rust_arches}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,8 +53,7 @@ Delta's main features are:
 - Code can be copied directly from the diff (`-/+` markers are removed
   by default).
 - `n` and `N` keybindings to move between files in large diffs, and
-  between diffs in `log -p` views (`--navigate`) A viewer for git and
-  diff output.
+  between diffs in `log -p` views (`--navigate`)
 
 %prep
 %setup -q -a1
@@ -68,7 +65,7 @@ sed -i -e 's/@@VERSION@@/%{version}/' Cargo.lock
 export CARGO_HOME="$(pwd)/.cargo"
 
 mkdir -p "$CARGO_HOME"
-cat >.cargo/config <<EOF
+cat >.cargo/config.toml <<EOF
 [source.crates-io]
 registry = 'https://github.com/rust-lang/crates.io-index'
 replace-with = 'vendored-sources'
@@ -80,6 +77,7 @@ EOF
 %build
 export CARGO_HOME="$(pwd)/.cargo"
 export RUSTONIG_SYSTEM_LIBONIG=true
+%{?with_system_libgit2:export LIBGIT2_NO_VENDOR=1}
 
 %cargo_build --frozen
 
@@ -88,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 export CARGO_HOME="$(pwd)/.cargo"
 
 export RUSTONIG_SYSTEM_LIBONIG=true
+%{?with_system_libgit2:export LIBGIT2_NO_VENDOR=1}
 %cargo_install --frozen --root $RPM_BUILD_ROOT%{_prefix} --path $PWD
 
 %clean
